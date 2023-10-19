@@ -11,3 +11,12 @@ export const addSlots = async (slots) => {
 
 
 }
+
+export const updateSlot = async (slotInfo) => {
+    try {
+        const response = await axios.put(`${API_URL}${slotInfo._id}`)
+        console.log(response, 'update res');
+    } catch (error) {
+        console.log(error, 'error in updating slot');
+    }
+}

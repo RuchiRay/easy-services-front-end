@@ -6,12 +6,13 @@ import { useGlobalContext } from "../context";
 import { service } from "../data/service";
 import axios from 'axios'
 import { toast } from "react-toastify";
+import { updateSlot } from "../features/slotService";
 
 const API_URL = '/api/bookings/'
 
 export const Complete = () => {
   const navigate = useNavigate();
-  const { bookingDetails } = useGlobalContext();
+  const { bookingDetails ,slotInfo} = useGlobalContext();
   const { user } = useSelector((state) => state.auth);
   const getPrices = () => {
     let price = 0;
@@ -40,6 +41,7 @@ export const Complete = () => {
    }
    try {
     const response = await axios.post(API_URL, bookingData, config)
+    updateSlot(slotInfo)
     toast.success('Booking successfull')
     console.log(  response.data,'res after booking');
      navigate("/dashboard");

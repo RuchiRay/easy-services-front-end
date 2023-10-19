@@ -4,14 +4,16 @@ import "swiper/css/navigation";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { addSlots } from "../../features/slotService";
-
+import { useGlobalContext } from "../../context";
 const API_URL = "/api/slots";
 export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
   const [dateArr, setDateArr] = useState(null);
   const [loading, setLoading] = useState(false);
-  const handleDate = (date) => {
+  const { setSlotInfo } = useGlobalContext()
+  const handleDate = (slotInfo) => {
+    setSlotInfo(slotInfo)
     setbookingDetails((prev) => {
-      return { ...prev, date: date };
+      return { ...prev, date: slotInfo.date };
     });
   };
   useEffect(() => {
@@ -20,6 +22,7 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
         setLoading(true);
         const response = await axios.get(API_URL);
         const data = response.data
+        console.log(data);
         const lastDate = data?.length ? (new Date(data[data?.length - 1]?.date))?.getDate() : 0
         const todayDate = (new Date()).getDate();
         const isDataOld = todayDate > lastDate
@@ -78,7 +81,7 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
           return (
             <div
               key={index}
-              onClick={() => handleDate(item.date)}
+              onClick={() => handleDate(item)}
               className={`${bookingDetails.date === item.date ? `font-semibold bg-orange-200` : "bg-white "
                 } flex shrink-0 flex-col px-4 py-4 rounded-sm  items-center cursor-pointer hover:font-semibold`}
             >

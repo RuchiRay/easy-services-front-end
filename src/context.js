@@ -10,11 +10,11 @@ const AppProvider = ({ children }) => {
     shift: "",
     date: "",
     time: "",
-   
-  });
 
+  });
+  const [slotInfo, setSlotInfo] = useState(null)
   return (
-    <AppContext.Provider value={{ bookingDetails, setbookingDetails }}>
+    <AppContext.Provider value={{ bookingDetails, setbookingDetails, slotInfo, setSlotInfo }}>
       {children}
     </AppContext.Provider>
   );
