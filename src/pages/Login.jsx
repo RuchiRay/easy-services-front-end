@@ -35,7 +35,7 @@ function Login() {
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate]);
+  }, [user, isError, isSuccess, message, navigate, dispatch, bookingDetails.brand]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({

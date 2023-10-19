@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import {  Outlet, useLocation } from "react-router-dom";
 import logo from "../../img/logo.png";
 import { useSelector,useDispatch } from "react-redux";
 import { FaUser } from 'react-icons/fa'

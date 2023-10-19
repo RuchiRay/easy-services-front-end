@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Spinner from "../components/Spinner";
@@ -32,7 +32,7 @@ function Dashboard() {
       }
     };
     getBookings();
-  }, []);
+  }, [user?.token]);
   const handleCancel = async (id) => {
     const config = {
       headers: {
@@ -41,6 +41,7 @@ function Dashboard() {
     };
    try {
     const response = await axios.delete(API_URL + id, config);
+    console.log(response);
     const newBookings = bookings.filter((item)=>item._id!==id)
     setBookings(newBookings)
     toast.success('booking cancelled successfully')

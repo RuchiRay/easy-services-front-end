@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import hero from "../../img/hero.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const Hero = () => {
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user } = useSelector(
     (state) => state.auth
   );
   return (

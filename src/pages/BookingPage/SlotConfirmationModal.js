@@ -1,11 +1,11 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 import { useGlobalContext } from "../../context";
 import { service } from "../../data/service";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function SlotConfirmationModal({ isOpen, closeModal }) {
-  const { bookingDetails, setbookingDetails } = useGlobalContext();
+  const { bookingDetails } = useGlobalContext();
   const { user } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
