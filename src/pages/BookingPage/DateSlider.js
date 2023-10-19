@@ -38,42 +38,25 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
     );
   return (
     <div className="w-full">
-      <div className="w-[900px]">
-        <Swiper
-          // install Swiper modules
-          modules={[Navigation]}
-          spaceBetween={50}
-          slidesPerView={3}
-          navigation
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
+      <div className="w-full flex gap-4 my-6 flex-wrap">
+       
           {dateArr.map((item) => {
             return (
-              <SwiperSlide key={item.date}>
                 <div
                   onClick={() => handleDate(item.date)}
                   className={`${
-                    bookingDetails.date === item.date ? `font-semibold` : ""
-                  } flex shrink-0 flex-col items-center cursor-pointer hover:font-semibold`}
+                    bookingDetails.date === item.date ? `font-semibold bg-orange-200` : "bg-white "
+                  } flex shrink-0 flex-col px-4 py-4 rounded-sm  items-center cursor-pointer hover:font-semibold`}
                 >
                   <p>{item.date}</p>
                   <p className="text-orange-400 text-base">
                     {item.free} Slots available
                   </p>
                 </div>
-              </SwiperSlide>
             );
           })}
 
-          <SwiperSlide>
-            {" "}
-            <div className="flex shrink-0 flex-col items-center cursor-pointer hover:font-semibold">
-              <p>Tomorrow</p>
-              <p className="text-orange-400 text-base">6 Slots available</p>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+      
       </div>
     </div>
   );
