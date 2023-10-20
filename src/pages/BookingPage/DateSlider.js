@@ -22,11 +22,15 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
         setLoading(true);
         const response = await axios.get(API_URL);
         const data = response.data
+
         console.log(data);
         const lastDate = data?.length ? (new Date(data[data?.length - 1]?.date))?.getDate() : 0
         const todayDate = (new Date()).getDate();
         const isDataOld = todayDate > lastDate
         const today = new Date()
+        const filteredData = data.filter((item) => {
+          return (new Date(item?.date)).getDate() >= todayDate
+        })
         let datesToBeAdded = 0
         if (isDataOld)
           datesToBeAdded = 7
@@ -34,10 +38,9 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
           datesToBeAdded = 6
         }
         else
-          datesToBeAdded = 7 - data?.length
+          datesToBeAdded = 7 - filteredData?.length
         const lastAcceptableDate = !isDataOld ? new Date(data[data.length - 1].date) : today
         lastAcceptableDate.setHours(0, 0, 0, 0);
-
         const nextDays = [...Array(datesToBeAdded)].map((_, i) => {
           const date = new Date(lastAcceptableDate);
 
@@ -46,9 +49,7 @@ export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
           return { date: date.toISOString().split('T')[0], free: 24 }
         });
 
-        const filteredData = data.filter((item) => {
-          return (new Date(item?.date)).getDate() >= todayDate
-        })
+
         if (isDataOld)
           setDateArr(nextDays)
         else
