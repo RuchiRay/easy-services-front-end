@@ -8,7 +8,7 @@ import axios from 'axios'
 import { toast } from "react-toastify";
 import { updateSlot } from "../features/slotService";
 
-const API_URL = '/api/bookings/'
+const API_URL = 'https://easy-services-back-end-production.up.railway.app/api/bookings/'
 
 export const Complete = () => {
   const navigate = useNavigate();

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { addSlots } from "../../features/slotService";
 import { useGlobalContext } from "../../context";
-const API_URL = "/api/slots";
+const API_URL = "https://easy-services-back-end-production.up.railway.app/api/slots";
 export const DateSlider = ({ setbookingDetails, bookingDetails }) => {
   const [dateArr, setDateArr] = useState(null);
   const [loading, setLoading] = useState(false);

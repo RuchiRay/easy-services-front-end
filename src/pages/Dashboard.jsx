@@ -6,7 +6,7 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 function Dashboard() {
   const navigate = useNavigate();
-  const API_URL = "/api/bookings/";
+  const API_URL = "https://easy-services-back-end-production.up.railway.app/api/bookings/";
   const { user } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
   const [bookings, setBookings] = useState([]);

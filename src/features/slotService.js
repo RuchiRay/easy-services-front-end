@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_URL = '/api/slots/'
+const API_URL = 'https://easy-services-back-end-production.up.railway.app/api/slots/'
 
 export const addSlots = async (slots) => {
     try {
